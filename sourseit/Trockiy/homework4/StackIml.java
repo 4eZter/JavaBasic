@@ -1,4 +1,4 @@
-package org3.sourseit.Trockiy.homework.fourth;
+package org3.sourseit.Trockiy.homework.homework4;
 
 public class StackIml implements Stack {
 

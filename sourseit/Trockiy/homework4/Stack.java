@@ -1,4 +1,4 @@
-package org3.sourseit.Trockiy.homework.fourth;
+package org3.sourseit.Trockiy.homework.homework4;
 
 public interface Stack {
     // adds an element to stack, throws exception if stack is full ("Stack is
