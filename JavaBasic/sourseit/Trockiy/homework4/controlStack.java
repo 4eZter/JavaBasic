@@ -6,92 +6,139 @@ import java.io.InputStreamReader;
 
 public class controlStack {
 
-    private static int size;
-    StackIml Stack = new StackIml(size);
+    public void handsControl() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-    //ручное управление стэком
-    public void stackHand(int chooze){
+        System.out.println("ведите размер стека");
 
-        try{
+        int stackSize = Integer.parseInt(reader.readLine());
 
-            switch (chooze) {
-                case 0: break;
-                case 1: Stack.push("E"); System.out.println("элемент добавлен"); break;
-                case 2: Stack.pop(); System.out.println("элемент удален"); break;
-                case 3: Stack.clear(); System.out.println("стэк очищен"); break;
-                case 4: Stack.print(); break;
+
+        StackIml Stack = new StackIml(stackSize);
+
+        POINT1:
+
+        while(true) {
+            printList();
+
+            int chooze = Integer.parseInt(reader.readLine());
+            try {
+
+                switch (chooze) {
+                    case 0:
+                        System.out.println("Всего доброго");
+                        break POINT1;
+
+                    case 1:
+
+                        System.out.println("введите элемент");
+                        Stack.push(reader.readLine());
+
+                        break;
+
+                    case 2:
+
+                        Stack.pop();
+                        System.out.println("элемент удален");
+                        break;
+
+                    case 3:
+
+                        Stack.clear();
+                        System.out.println("стэк очищен");
+                        break;
+
+                    case 4:
+
+                        Stack.print();
+                        break;
+                    default:
+                        System.out.println("некорректный ввод! введите число пожалуйста");
+
+                }
+
+            } catch (StackException e) {
+                System.out.println("Ошибочка вышла");
             }
-
-        }catch (StackException e){
         }
-    }
-
-    //установить размер стека
-    public void setSize(int i) throws IOException {
-
-        controlStack.size = i;
 
     }
 
-    // выполнение. Проверка стека на размерность 5
-    public boolean firstStep(int i){
-        if(i == 5){
+    private void auto() {
+
+        StackIml Stack = new StackIml(5);
+
+        Stack.clear();
+        try {
+            System.out.println("Добавляю 4 элемента");
+            Stack.push("E1");
+            Stack.push("E2");
+            Stack.push("E3");
+            Stack.push("E4");
+            Stack.print();
+
+            System.out.println("Удаляю 2 элемента");
+            Stack.pop();
+            Stack.pop();
+            Stack.print();
+
+            System.out.println("\nУдаляю оставшиеся элементы для загрузки новых");
+            Stack.pop();
+            Stack.pop();
+            Stack.print();
+
+            System.out.println("\nДобавляю 5 элементов в заданном порядке");
+            Stack.push("E6");
+            Stack.push("E7");
+            Stack.push("E3");
+            Stack.push("E4");
+            Stack.push("E5");
+            Stack.print();
+
+//            System.out.println("делаю попытку добавить лишний элемент");
+//            Stack.push("redundant");
+
+            System.out.println("\nПроизвожу очистку");
             Stack.clear();
-            System.out.println("Стек пуст. Программа приступает к работе");
-            return true;
-        }else return false;
-    }
+            Stack.print();
 
-    //автоматическое выполнение. Занесение в стек 4 элементов
-    public  void secondStep() throws StackException {
-        for(int i = 1; i < 5; ++i) {
-            Stack.push("E" + i);
+//            System.out.println("делаю попытку удалить несуществующий элемент");
+//            Stack.pop();
+
+
+        } catch (StackException e) {
+
         }
+
+
+
     }
 
-    //автоматическое выполнение. Удаление из стека 1го, 4го и 5го элементов
-    public  void thirdStep() throws StackException {
-        for(int i = 1; i < 5; i++) Stack.pop();
-        for(int i = 1; i < 6; i++){
-            switch (i){
-                case 1: Stack.push(null);break;
-                case 2: Stack.push(null); break;
-                case 3: Stack.push("E3"); break;
-                case 4: Stack.push("E4"); break;
-                case 5: Stack.push(null); break;
-                default: break;
-            }
-        }
-    }
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        controlStack control = new controlStack();
 
-    //автоматическое выполнение. Занесение 5го, 6го и 7го элементов в оставшиеся свободные места стека
-    public  void fourthStep() throws StackException{
-        for(int i = 1; i < 6; i++) Stack.pop();
-        for(int i = 1; i < 6; i++){
-            switch (i){
-                case 1: Stack.push("E6"); break;
-                case 2: Stack.push("E7"); break;
-                case 3: Stack.push("E3"); break;
-                case 4: Stack.push("E4"); break;
-                case 5: Stack.push("E5"); break;
-                default: break;
-            }
-        }
-    }
+        System.out.println("1. ручное управление стеком" + "\n2. автоматическое управление стеком" + "\nпожалуйста, сделайте ваш выбор");
 
-    //выбор режима работы программы
-    public boolean chooseWay(int i){
+        int chooze = Integer.parseInt(reader.readLine());
 
-        if(i == 1){
+
+        if(chooseWay(chooze)) {
             System.out.println("Выбрано ручное управление");
-            return true;
-        }else if(i == 2)
+            control.handsControl();
+        }else if(!chooseWay(chooze)){
             System.out.println("Выбрано автоматическое выполнение программы");
-            return false;
+            control.auto();
+        }
     }
 
-    public void printList(){
-        System.out.println("Пожалуйста, выберите одну из операций над стеком:");
+
+
+
+
+    //список действий со стеком
+    public static void printList() {
+        System.out.println("\n Пожалуйста, выберите одну из операций над стеком:");
 
         System.out.println(" 1. добавить элемент в стек"
                 + "\n 2. удалить элемент из стека"
@@ -102,67 +149,22 @@ public class controlStack {
 
 
 
-    public static void main(String[] args) throws IOException {
+    //выбор режима работы программы
+    public static boolean chooseWay(int i) {
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        if (i == 1) {
 
-        controlStack control = new controlStack();
+            return true;
+        } else if (i == 2) {
 
-        System.out.println("Для начала выберите режим работы программы: "
-                + "\n 1. ручной режим работы со стеком"
-                + "\n 2. автоматическое выполнение программы");
-        int chooze = Integer.parseInt(reader.readLine());
-
-        if(control.chooseWay(chooze)){
-
-            System.out.println("Пожалуйста, установите размер стека");
-            int size = Integer.parseInt(reader.readLine());
-            control.setSize(size);
-
-            control.printList();
-
-            int select = Integer.parseInt(reader.readLine());
-            control.stackHand(select);
-
-
-        }else if(!control.chooseWay(chooze)){
-
-            try{
-            System.out.println("Автоматическое выполнение программы началось!");
-
-            control.stackHand(3);
-            System.out.println("Произведена автоматическая очистка стека");
-
-            control.setSize(5);
-            System.out.println("Размер стека автоматически установлен на 5 ячеек");
-
-            control.firstStep(5);
-            System.out.println("Выполнена проверка размера стека для успешного начала работы");
-
-
-                control.secondStep();
-
-
-
-            System.out.println("Элементы Е1, Е2, Е3 и Е4 успешно добавлены в стек");
-
-
-                control.thirdStep();
-
-
-            System.out.println("Элементы Е1 и Е2 успешно удалены из стека");
-
-
-                control.fourthStep();
-
-
-            System.out.println("Элементы Е5, Е6 и Е7 успешно добавлены на свободные ячейки стека");
-
-                control.stackHand(4);
-
-        }catch(StackException e){}
+            return false;
+        }else System.out.println("неправильный ввод!");
+            return chooseWay(i);
     }
-    }
+
+
+
+
 }
 
 
