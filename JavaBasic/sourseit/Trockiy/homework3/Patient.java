@@ -92,19 +92,19 @@ public class Patient {
 
         @Override
         public String toString() {
-            return getId() + " " + surname + " " + name + " " + patronymic + ", " + "адрес: "+ getAddress() + ", " + "телефон: " + getPhoneNumber() + ", "+ "номер карты: " + numberOfCard + ", " + "диагноз: " + diagnosis;
+            return getId() + " " + surname + " " + name + " " + patronymic + ", " + "Р°РґСЂРµСЃ: "+ getAddress() + ", " + "С‚РµР»РµС„РѕРЅ: " + getPhoneNumber() + ", "+ "РЅРѕРјРµСЂ РєР°СЂС‚С‹: " + numberOfCard + ", " + "РґРёР°РіРЅРѕР·: " + diagnosis;
         }
 
         //choozer
         public static boolean yes(String entry, String deny) throws IOException {
-            String yes = "Да";
+            String yes = "Р”Р°";
             if (entry.equalsIgnoreCase(deny)) {
-                System.out.println("Ну нет, так нет...");
+                System.out.println("РќСѓ РЅРµС‚, С‚Р°Рє РЅРµС‚...");
                 return false;
             }
             if (!entry.equalsIgnoreCase(yes)) {
-                System.out.println("Ух ты, среди двух возможных вариантов вы придумали третий");
-                System.out.println("Но, к сожалению, он не подходит");
+                System.out.println("РЈС… С‚С‹, СЃСЂРµРґРё РґРІСѓС… РІРѕР·РјРѕР¶РЅС‹С… РІР°СЂРёР°РЅС‚РѕРІ РІС‹ РїСЂРёРґСѓРјР°Р»Рё С‚СЂРµС‚РёР№");
+                System.out.println("РќРѕ, Рє СЃРѕР¶Р°Р»РµРЅРёСЋ, РѕРЅ РЅРµ РїРѕРґС…РѕРґРёС‚");
                 return false;
             } else return true;
         }
@@ -113,11 +113,11 @@ public class Patient {
         public static void patientList(Patient[] patients) throws IOException {
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Желаете ознакомиться со списком пациентов?" + " (Да/Нет)");
+        System.out.println("Р–РµР»Р°РµС‚Рµ РѕР·РЅР°РєРѕРјРёС‚СЊСЃСЏ СЃРѕ СЃРїРёСЃРєРѕРј РїР°С†РёРµРЅС‚РѕРІ?" + " (Р”Р°/РќРµС‚)");
 
         //patients list
         String g = reader.readLine();
-        String no = "Нет";
+        String no = "РќРµС‚";
 
         if (yes(g, no)) {
             for (Patient patient : patients) {
@@ -128,11 +128,11 @@ public class Patient {
 
         public static void diagnozisList(Patient[] patients) throws IOException {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Желаете ознакомиться со списком диагнозов? (Да/Нет)");
+            System.out.println("Р–РµР»Р°РµС‚Рµ РѕР·РЅР°РєРѕРјРёС‚СЊСЃСЏ СЃРѕ СЃРїРёСЃРєРѕРј РґРёР°РіРЅРѕР·РѕРІ? (Р”Р°/РќРµС‚)");
 
             //diagnozis list
             String s = reader.readLine();
-            String no = "Нет";
+            String no = "РќРµС‚";
             if (yes(s, no))
                 for (Patient patient : patients) {
 
@@ -144,7 +144,7 @@ public class Patient {
         public static void choozeDiagnoz(Patient[] patients) throws IOException {
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Введите название диагноза для классификации пациентов");
+            System.out.println("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РґРёР°РіРЅРѕР·Р° РґР»СЏ РєР»Р°СЃСЃРёС„РёРєР°С†РёРё РїР°С†РёРµРЅС‚РѕРІ");
             String d = reader.readLine();
 
             //chooze diagnoz
@@ -159,16 +159,16 @@ public class Patient {
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             //medical sheet number search
-            System.out.println("задайте интервал для поиска больничных карт по номеру");
+            System.out.println("Р·Р°РґР°Р№С‚Рµ РёРЅС‚РµСЂРІР°Р» РґР»СЏ РїРѕРёСЃРєР° Р±РѕР»СЊРЅРёС‡РЅС‹С… РєР°СЂС‚ РїРѕ РЅРѕРјРµСЂСѓ");
             System.out.println();
 
             //set first number to search
-            System.out.println("для этого введите начальное число поиска");
+            System.out.println("РґР»СЏ СЌС‚РѕРіРѕ РІРІРµРґРёС‚Рµ РЅР°С‡Р°Р»СЊРЅРѕРµ С‡РёСЃР»Рѕ РїРѕРёСЃРєР°");
             String n = reader.readLine();
             int firstNumber = Integer.parseInt(n);
 
             //set second number to search
-            System.out.println("и конечное число поиска");
+            System.out.println("Рё РєРѕРЅРµС‡РЅРѕРµ С‡РёСЃР»Рѕ РїРѕРёСЃРєР°");
             String n1 = reader.readLine();
             int lastNumber = Integer.parseInt(n1);
 
@@ -185,17 +185,17 @@ public class Patient {
 
             Patient[] patients;
             patients = new Patient[]{
-                    new Patient(1, "Киркоров", "Филипп", "Бедросович", "ул.Ленина 69", "093-43-23-567", 1, "Хронический невроз"),
-                    new Patient(2, "Джигурда", "Никита", "Борисович", "Планета Нептун", "90-44-56", 2, "Шизофрения"),
-                    new Patient(3, "Бурда", "Борис", "Оскарович", "ул.Комсомольцев 23", "23-45-567", 3, "Обсессивно-компульсивный синдром"),
-                    new Patient(4, "Жириновский", "Владимир", "Вольфович", "ул.Конечная 148", "34-34-567", 4, "Шизофрения"),
-                    new Patient(5, "Агузарова", "Жанна", "Хасановна", "Альфа Центавра", "144-144-3", 5, "Маниакально-депрессивный синдром"),
-                    new Patient(6, "Моисеев", "Борис", "Михайлович", "ул.Блюхера 64", "011-01-02", 6, "Хронический невроз")
+                    new Patient(1, "РљРёСЂРєРѕСЂРѕРІ", "Р¤РёР»РёРїРї", "Р‘РµРґСЂРѕСЃРѕРІРёС‡", "СѓР».Р›РµРЅРёРЅР° 69", "093-43-23-567", 1, "РҐСЂРѕРЅРёС‡РµСЃРєРёР№ РЅРµРІСЂРѕР·"),
+                    new Patient(2, "Р”Р¶РёРіСѓСЂРґР°", "РќРёРєРёС‚Р°", "Р‘РѕСЂРёСЃРѕРІРёС‡", "РџР»Р°РЅРµС‚Р° РќРµРїС‚СѓРЅ", "90-44-56", 2, "РЁРёР·РѕС„СЂРµРЅРёСЏ"),
+                    new Patient(3, "Р‘СѓСЂРґР°", "Р‘РѕСЂРёСЃ", "РћСЃРєР°СЂРѕРІРёС‡", "СѓР».РљРѕРјСЃРѕРјРѕР»СЊС†РµРІ 23", "23-45-567", 3, "РћР±СЃРµСЃСЃРёРІРЅРѕ-РєРѕРјРїСѓР»СЊСЃРёРІРЅС‹Р№ СЃРёРЅРґСЂРѕРј"),
+                    new Patient(4, "Р–РёСЂРёРЅРѕРІСЃРєРёР№", "Р’Р»Р°РґРёРјРёСЂ", "Р’РѕР»СЊС„РѕРІРёС‡", "СѓР».РљРѕРЅРµС‡РЅР°СЏ 148", "34-34-567", 4, "РЁРёР·РѕС„СЂРµРЅРёСЏ"),
+                    new Patient(5, "РђРіСѓР·Р°СЂРѕРІР°", "Р–Р°РЅРЅР°", "РҐР°СЃР°РЅРѕРІРЅР°", "РђР»СЊС„Р° Р¦РµРЅС‚Р°РІСЂР°", "144-144-3", 5, "РњР°РЅРёР°РєР°Р»СЊРЅРѕ-РґРµРїСЂРµСЃСЃРёРІРЅС‹Р№ СЃРёРЅРґСЂРѕРј"),
+                    new Patient(6, "РњРѕРёСЃРµРµРІ", "Р‘РѕСЂРёСЃ", "РњРёС…Р°Р№Р»РѕРІРёС‡", "СѓР».Р‘Р»СЋС…РµСЂР° 64", "011-01-02", 6, "РҐСЂРѕРЅРёС‡РµСЃРєРёР№ РЅРµРІСЂРѕР·")
 
             };
 
 
-            System.out.println("Добрый день, вас приветствует Городская психиатрическая больница №15");
+            System.out.println("Р”РѕР±СЂС‹Р№ РґРµРЅСЊ, РІР°СЃ РїСЂРёРІРµС‚СЃС‚РІСѓРµС‚ Р“РѕСЂРѕРґСЃРєР°СЏ РїСЃРёС…РёР°С‚СЂРёС‡РµСЃРєР°СЏ Р±РѕР»СЊРЅРёС†Р° в„–15");
 
             patientList(patients);
             System.out.println();
@@ -208,7 +208,7 @@ public class Patient {
 
             numberSearch(patients);
 
-            System.out.println("На данный момент новых поступлений не предвидется. Всего доброго!");
+            System.out.println("РќР° РґР°РЅРЅС‹Р№ РјРѕРјРµРЅС‚ РЅРѕРІС‹С… РїРѕСЃС‚СѓРїР»РµРЅРёР№ РЅРµ РїСЂРµРґРІРёРґРµС‚СЃСЏ. Р’СЃРµРіРѕ РґРѕР±СЂРѕРіРѕ!");
     }
 }
 
@@ -216,12 +216,12 @@ public class Patient {
 
 
 
-//        3. Patient:  id, Фамилия, Имя, Отчество, Адрес, Телефон, Номер
-//           медицинской карты, Диагноз.
+//        3. Patient:  id, Р¤Р°РјРёР»РёСЏ, РРјСЏ, РћС‚С‡РµСЃС‚РІРѕ, РђРґСЂРµСЃ, РўРµР»РµС„РѕРЅ, РќРѕРјРµСЂ
+//           РјРµРґРёС†РёРЅСЃРєРѕР№ РєР°СЂС‚С‹, Р”РёР°РіРЅРѕР·.
 
-//        Создать массив объектов. Вывести:
-//        a)  список пациентов, имеющих данный диагноз;
-//        b)  список пациентов, номер медицинской карты у которых находится
-//        в заданном интервале.
+//        РЎРѕР·РґР°С‚СЊ РјР°СЃСЃРёРІ РѕР±СЉРµРєС‚РѕРІ. Р’С‹РІРµСЃС‚Рё:
+//        a)  СЃРїРёСЃРѕРє РїР°С†РёРµРЅС‚РѕРІ, РёРјРµСЋС‰РёС… РґР°РЅРЅС‹Р№ РґРёР°РіРЅРѕР·;
+//        b)  СЃРїРёСЃРѕРє РїР°С†РёРµРЅС‚РѕРІ, РЅРѕРјРµСЂ РјРµРґРёС†РёРЅСЃРєРѕР№ РєР°СЂС‚С‹ Сѓ РєРѕС‚РѕСЂС‹С… РЅР°С…РѕРґРёС‚СЃСЏ
+//        РІ Р·Р°РґР°РЅРЅРѕРј РёРЅС‚РµСЂРІР°Р»Рµ.
 
 
