@@ -17,10 +17,8 @@ class test{
         System.out.println("car2 hashCode " + car2.hashCode());
         System.out.println("car3 hashCode " + car3.hashCode());
     }
-
-
-
 }
+
 class Car implements Comparable{
     private String name;
     private int age;
@@ -59,16 +57,16 @@ class Car implements Comparable{
     @Override
     public int compareTo(Object obj) {
         Car tmp = (Car)obj;
-        //меньшее
+        //РјРµРЅСЊС€РµРµ
         if(this.age < tmp.age)
         {
             return -1;
         }
-        //большее
+        //Р±РѕР»СЊС€РµРµ
         else if(this.age > tmp.age)
         {
             return 1;
-        //равно
+        //СЂР°РІРЅРѕ
         }else if(this.age == tmp.age)
 
         return 0;   return 0;
