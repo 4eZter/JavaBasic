@@ -19,7 +19,11 @@ class test{
     }
 }
 
+<<<<<<< HEAD
 public class Car implements Comparable{
+=======
+class Car implements Comparable{
+>>>>>>> 49923cc8f9dd6e8e72a8fbf1e45361149461fbff
     private String name;
     private int age;
 
@@ -47,11 +51,14 @@ public class Car implements Comparable{
     }
 
     @Override
+<<<<<<< HEAD
     public String toString() {
         return name +" " + age;
     }
 
     @Override
+=======
+>>>>>>> 49923cc8f9dd6e8e72a8fbf1e45361149461fbff
     public int hashCode() {
         int hash = 3;
         hash = 53 * hash + (this.name != null ? this.name.hashCode() : 0);
